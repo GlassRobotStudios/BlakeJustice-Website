@@ -51,7 +51,7 @@
             <div class="container-fluid">
                 <?php
                     $count = 0;
-                    echo "<table class=\"table table-bordered\" style=\"margin-bottom:60px;\">";
+                    echo "<table class=\"table table-bordered\">";
                     for ($i=0; $i < 3; $i++) { 
                         echo "<tr>";
                         for ($j=0; $j < 4; $j++) { 
@@ -62,6 +62,14 @@
                     }
                     echo "</table>";
                 ?>
+            </div>
+
+            <div class="container-fluid">
+                <h1 class="gr-header">VIDEO</h1>
+            </div>
+
+            <div class="container-fluid" align="center">
+                <iframe style="margin-bottom:60px;" width="860" height="515" src="http://www.youtube.com/embed/dNjDXFwM-VE" frameborder="1" allowfullscreen></iframe>
             </div>
 
             <!-- Footer -->
