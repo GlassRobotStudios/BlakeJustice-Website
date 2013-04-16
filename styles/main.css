@@ -1,0 +1,187 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+
+
+
+/*********************/
+/*** Main Settings ***/
+body { 
+  background: url('../images/background.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+/*********************/
+/*********************/
+
+
+
+/********************************************************/
+/*** Overiding nav bar in order to center the content ***/
+.navbar .nav,
+.navbar .nav > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+}
+.navbar-inner {
+    text-align:center;
+}
+/********************************************************/
+/********************************************************/
+
+
+
+/***********************************************/
+/*** Setting the height of each of the links ***/
+.gr-navbar-buttons-y-pos{
+	margin-top: 50px; 
+	margin-bottom: 50px;
+}
+/***********************************************/
+/***********************************************/
+
+
+
+/*************************/
+/*** Carousel Settings ***/
+#gr-carousel-border-vert{
+	margin-left: 0px; 
+	height: 371px; 
+	width: auto;
+}
+
+#gr-carousel-border-horz{
+	margin-left: 50px; 
+	width: 800px;
+	height: auto;
+}
+/*************************/
+/*************************/
+
+
+
+/*********************/
+/*** Font Settings ***/
+@font-face {
+    src: url('../fonts/bell_gothic_black.ttf') format("truetype");
+    font-family: "Bell Gothic Black";
+}
+
+.gr-font { 
+    font-family: "Bell Gothic Black", Verdana, Tahoma;
+    color: rgb(195,56,45);
+}
+
+#gr-navbar-font-active,
+#gr-navbar-font{
+    font-family: "Bell Gothic Black", Verdana, Tahoma;
+    color: rgb(230,230,230);
+    font-size: 21px;
+    -o-transition:.2s;
+    -ms-transition:.2s;
+    -moz-transition:.2s;
+    -webkit-transition:.2s;
+    /* ...and now for the proper property */
+    transition:.2s;
+}
+
+#gr-navbar-font:hover {
+	color: rgb(56,145,172);
+}
+
+#gr-navbar-font-active {
+	color: rgb(56,145,172);
+}
+/*********************/
+/*********************/
+
+
+.gr-form-alert {
+    margin-left: 0px;
+    margin-right: 20px;
+}
+
+.gr-header,
+.gr-header-invert { 
+    font-family: "Bell Gothic Black", Verdana, Tahoma;
+    color: rgb(230,230,230);
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+
+.gr-header-invert {
+    color: rgb(25,25,25);
+}
+
+.gr-para,
+.gr-para-invert { 
+    font-family: "Bell Gothic Black", Verdana, Tahoma;
+    color: rgb(230,230,230);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.gr-para-invert {
+    color: rgb(25,25,25);
+}
+
+.gr-bullets { 
+    font-family: "Bell Gothic Black", Verdana, Tahoma;
+    color: rgb(230,230,230);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.gr-footer{
+	margin-top: 50px;
+}
+
+/*.gr-navbar-x-pos{
+	margin-left: 120px; 
+}
+
+.gr-navbar-buttons-spacing{
+	margin-left: 15px;
+}
+
+.gr-navbar-logo-y-pos{
+	margin-top: 15px;
+}
+*/
+
+/*.carousel{
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    overflow:hidden;
+}
+*/
+/*body {
+	margin: 0;
+	background: url('../images/background2.png');
+	background-size: 1425px 720px;
+	background-size: 100%;
+	background-repeat:no-repeat;
+	display: compact;
+	font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}*/
+
+
+/*.navbar-inner{
+    background:transparent !important;
+    }
+.navbar-inner container{
+    background:transparent !important;
+    }
+.navbar{
+    background:transparent !important;
+    }
+#nav-main{
+    background:transparent !important;
+    }
+#banner{
+    background:transparent !important;
+    }​*/
