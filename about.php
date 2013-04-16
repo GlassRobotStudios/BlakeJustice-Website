@@ -29,7 +29,7 @@
                         <a href="download.php" id="gr-navbar-font">DOWNLOAD</a>
                     </li>
                     <li>
-                        <a href="index.php"><img src="images/logo.png"></a>
+                        <a href="/"><img src="images/logo.png"></a>
                     </li>
                     <li class="gr-navbar-buttons-y-pos">
                         <a href="about.php" id="gr-navbar-font-active">ABOUT</a>
