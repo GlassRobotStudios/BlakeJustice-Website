@@ -1,3 +1,15 @@
+<?php
+    $URL     = "http://www.apple.com/ie/itunes/";
+
+    $iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
+    $iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+    $iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
+
+    if( $iPod || $iPhone || $iPad )
+    {
+        header("Location: $URL");
+    }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -18,18 +30,6 @@
         <script src="scripts/vendor/modernizr.min.js"></script>
     </head>
     <body>
-        <?php
-            $URL     = "http://www.apple.com/ie/itunes/";
-
-            $iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
-            $iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
-            $iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
-
-            if( $iPod || $iPhone || $iPad )
-            {
-                header('Location: $URL');
-            }
-        ?>
         <!-- Header -->
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
