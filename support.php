@@ -16,6 +16,15 @@
         <link rel="stylesheet" href="styles/bootstrap.css">
         <link rel="stylesheet" href="styles/main.css">
         <script src="scripts/vendor/modernizr.min.js"></script>
+        <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+        <script type="text/javascript">
+            function showRecaptcha(element) 
+            {
+                Recaptcha.create("6LcP7N8SAAAAAJbHrhGweRdC-ww8zGtCzNA13NIj", element, {
+                    theme: "red",
+                    callback: Recaptcha.focus_response_field});
+            }
+        </script>
     </head>
     <body>
 
@@ -84,10 +93,10 @@
                     </div>
                     
                     <div class="control-group">
-                        <label class="control-label gr-para" for="inputPassword">Your Message</label>
+                        <label class="control-label gr-para" for="inputMessage">Your Message</label>
                         <div class="controls">
                             <!-- <textarea rows="6"></textarea> -->
-                            <textarea class="field span6" id="textarea" rows="9" placeholder="Tell us what happened"></textarea>
+                            <textarea class="field span6" id="inputMessage" rows="9" placeholder="Tell us what happened"></textarea>
                         </div>
                     </div>
                     
@@ -119,22 +128,30 @@
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal" action="verify" method="POST">
-                    <div class="control-group" align="center">
-                        <?php
-                            require_once('recaptchalib.php');
-                            $publickey = "6LcP7N8SAAAAAJbHrhGweRdC-ww8zGtCzNA13NIj"; // you got this from the signup page
-                            echo recaptcha_get_html($publickey);
-                        ?>
+                <form class="form-horizontal" name="modal-support" action="check" method="POST">
+                    <input type="hidden" name="modal-inputName">
+                    <input type="hidden" name="modal-inputEmail">
+                    <input type="hidden" name="modal-inputMessage">
+                    <input type="hidden" name="modal-recaptcha_challenge_field" value="adamD2">
+                    <input type="hidden" name="modal-recaptcha_response_field" value="adamD3">
+
+                    <div class="control-group" align="center" id="recaptcha_div">
                     </div>
+
+                    <div class="alert alert-error fade-in" id="captchaStatus" style="display:none; margin-left: 120px; margin-right: 120px;">
+                        Incorrect captcha. Please try again
+                    </div>
+
+    
                     <div class="control-group" align="center">
                         <div class="controls" style="margin-left:0px;">
-                            <button type="submit" class="btn btn-primary gr-para">Done</button>
+                            <button type="submit" class="btn btn-primary gr-para" id="check">Done</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+
 
 
 
@@ -214,10 +231,49 @@
                 $(document).ready(function()
                 {
                     $('#recaptchaModal').modal('show');
+                    showRecaptcha('recaptcha_div');
                 })
             };
             return false;
         }
+
+        $(function(){
+            function validateCaptcha()
+            {
+                challengeField = $("input#recaptcha_challenge_field").val();
+                responseField = $("input#recaptcha_response_field").val();
+
+                document.forms["modal-support"]["modal-inputName"].value = document.forms["support"]["inputName"].value;
+                document.forms["modal-support"]["modal-inputEmail"].value = document.forms["support"]["inputEmail"].value;
+                document.forms["modal-support"]["modal-inputMessage"].value = document.forms["support"]["inputMessage"].value;
+                document.forms["modal-support"]["modal-recaptcha_challenge_field"].value = challengeField;
+                document.forms["modal-support"]["modal-recaptcha_response_field"].value = responseField;
+
+                var html = $.ajax({
+                    type: "POST",
+                    url : "VerifyRecaptcha",
+                    data: "recaptcha_challenge_field=" + challengeField + "&recaptcha_response_field=" + responseField,
+                    async: false
+                }).responseText;
+
+                if (html == "true")
+                {
+                    $("#captchaStatus").hide();
+                    return true;
+                }
+                else
+                {
+                    $("#captchaStatus").show();
+                    Recaptcha.reload();
+                    return false;
+                }
+            }
+
+            //Modified as per comments in site to handle event unobtrusively
+            $("#check").click(function(){
+                return validateCaptcha();
+            });
+        });
     </script>
 </body>
 </html>
