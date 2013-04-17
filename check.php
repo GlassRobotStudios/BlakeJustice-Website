@@ -22,7 +22,7 @@
 	ini_set("display_errors",1); 
 	error_reporting(E_ALL);
 
-	set_include_path('/Users/adam/MAMP/BlakeJustice-Website/');
+	// set_include_path(__dir__.'/dependencies');
 
 	require_once ('SendEmail.php');
 	

@@ -1,6 +1,6 @@
 <?php
 
-require_once "Mail.php";
+require_once "dependencies/Mail.php";
 
 class SendEmail
 {
@@ -39,6 +39,11 @@ class SendEmail
 				'password' => $password));
 
 		$mail = $smtp->send($to, $headers, $body);
+
+		if (PEAR::isError($smtp)) 
+		{
+			echo("<p>" . "vasdf ". $smtp->getMessage() . "</p>");
+		}
 
 		if (PEAR::isError($mail)) {
 			//echo("<p>" . $mail->getMessage() . "</p>");
