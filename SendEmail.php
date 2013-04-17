@@ -1,22 +1,38 @@
 <?php
 
-require_once "dependencies/Mail.php";
+require_once "Mail.php";
 
 class SendEmail
 {
 	public static function sendAutomaticEmailTo($name, $emailAddress, $message)
 	{
-		$from = $name;
+		$date = date_create();
+
+		$from = "$name <$emailAddress>";
 		$to = "support@glassrobotstudios.com";
-		$subject = "Blake Justice: Project Hero";
-		$contentType = 'text/html';
-		$body = "<p>
-					This email was send from <a href=\"http://blakejustice.co/support\">http://blakejustice.co/support</a>. 
-				</p>
+		$subject = "Blake Justice: Project Hero - Support Page";
+		$contentType = "text/html";
+		$replyTo = $emailAddress;
+		$body = "
 				<p>
-					$message
+					<h3>Name:</h3> 
+					$name<br><br>
+
+					<h3>Email:</h3>
+					$emailAddress<br><br>
+
+					<h3>Message:</h3>
+					$message<br><br>
 				</p>
-				<p>";
+
+				<p>
+				----------------------------
+				</p>
+
+				<p>
+					This email was send from <a href=\"http://blakejustice.co/support\" target=\"_blank\">http://blakejustice.co/support</a>
+				</p>
+				";
 
 		$host = "ssl://smtp.gmail.com";
 		$port = "465";
@@ -27,7 +43,8 @@ class SendEmail
 			'From' => $from,
 			'To' => $to,
 			'Subject' => $subject,
-			'Content-Type' => $contentType);
+			'Content-Type' => $contentType,
+			'Reply-To' => $replyTo);
 
 		$smtp = Mail::factory(
 			'smtp',
@@ -42,11 +59,11 @@ class SendEmail
 
 		if (PEAR::isError($smtp)) 
 		{
-			echo("<p>" . "vasdf ". $smtp->getMessage() . "</p>");
+			// echo("<p>" . "vasdf ". $smtp->getMessage() . "</p>");
 		}
 
 		if (PEAR::isError($mail)) {
-			//echo("<p>" . $mail->getMessage() . "</p>");
+			// echo("<p>" . $mail->getMessage() . "</p>");
 		} else {
 			//echo("<p>Message successfully sent!</p>");
 		}
