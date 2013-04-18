@@ -267,7 +267,7 @@
 
                 var html = $.ajax({
                     type: "POST",
-                    url : "VerifyRecaptcha",
+                    url : "ajax.verifyrecaptcha",
                     data: "recaptcha_challenge_field=" + challengeField + "&recaptcha_response_field=" + responseField,
                     async: false
                 }).responseText;
@@ -293,10 +293,6 @@
                 setTimeout(function () {btn.button('reset')}, 12000);
                 return validateCaptcha();
             });
-
-            // button state demo
-            // $('#checkButton').click(function () {
-            // });
         });
     </script>
 </body>
