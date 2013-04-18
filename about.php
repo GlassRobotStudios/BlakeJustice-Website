@@ -72,17 +72,9 @@
                     <li class="gr-bullets">Multiplayer: Compete against friends and random people in levels they have made</li>
                 </dl>
             </div>
-
-            <!-- Footer -->
-            <div class="container-fluid gr-footer">
-                <!-- <hr style="margin-top: 50px;"> -->
-                <footer>
-                    <p class="gr-font">© <a class="gr-font" href="http://www.glassrobotstudios.com" target="_blank"> Glass Robot Studios</a> 2013</p>
-                </footer>
-            </div>
         </div>
 
-
+        <?php include "footer.php"; ?>
 
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>

@@ -132,15 +132,9 @@
                     </form>
                 <?php } ?>
             </div>
-
-            <!-- Footer -->
-            <div class="container-fluid">
-                <!-- <hr style="margin-top: 50px;"> -->
-                <footer>
-                    <p class="gr-font">© <a class="gr-font" href="http://www.glassrobotstudios.com" target="_blank"> Glass Robot Studios</a> 2013</p>
-                </footer>
-            </div>
         </div>
+
+        <?php include "footer.php"; ?>
 
         <!-- recaptchaModal -->
         <div class="modal hide fade" id="recaptchaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none">

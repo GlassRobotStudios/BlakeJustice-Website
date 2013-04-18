@@ -71,15 +71,9 @@
             <div class="container-fluid" align="center">
                 <iframe style="margin-bottom:60px;" width="860" height="515" src="http://www.youtube.com/embed/dNjDXFwM-VE" frameborder="1" allowfullscreen></iframe>
             </div>
-
-            <!-- Footer -->
-            <div class="container-fluid">
-                <!-- <hr style="margin-top: 50px;"> -->
-                <footer>
-                    <p class="gr-font">© <a class="gr-font" href="http://www.glassrobotstudios.com" target="_blank"> Glass Robot Studios</a> 2013</p>
-                </footer>
-            </div>
         </div>
+
+        <?php include "footer.php"; ?>
 
         <!-- Lightbox -->
         <div id="screenshotLightbox" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
