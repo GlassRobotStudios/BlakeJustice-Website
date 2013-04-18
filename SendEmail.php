@@ -32,8 +32,8 @@ class SendEmail
 
 				<p>
 					This email was send from <a href=\"http://blakejustice.co/support\" target=\"_blank\">http://blakejustice.co/support</a><br>
-					IP Address: $clientAddress<br>
-					Proxy Address (if used): $proxyAddress<br>
+					Client IP Address: $clientAddress<br>
+					Client Proxy Address: $proxyAddress<br>
 				</p>
 				";
 
