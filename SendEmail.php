@@ -6,7 +6,8 @@ class SendEmail
 {
 	public static function sendAutomaticEmailTo($name, $emailAddress, $message)
 	{
-		$date = date_create();
+		$clientAddress = $_SERVER['REMOTE_ADDR'];
+		$proxyAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
 		$from = "$name <$emailAddress>";
 		$to = "support@glassrobotstudios.com";
@@ -30,7 +31,9 @@ class SendEmail
 				</p>
 
 				<p>
-					This email was send from <a href=\"http://blakejustice.co/support\" target=\"_blank\">http://blakejustice.co/support</a>
+					This email was send from <a href=\"http://blakejustice.co/support\" target=\"_blank\">http://blakejustice.co/support</a><br>
+					IP Address: $clientAddress<br>
+					Proxy Address (if used): $proxyAddress<br>
 				</p>
 				";
 
