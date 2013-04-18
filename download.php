@@ -1,5 +1,5 @@
 <?php
-    $URL     = "http://www.apple.com/ie/itunes/";
+    $URL     = "https://itunes.apple.com/us/app/blake-justice-project-hero/id632308261?ls=1&mt=8";
 
     $iPod    = stripos($_SERVER['HTTP_USER_AGENT'],"iPod");
     $iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
