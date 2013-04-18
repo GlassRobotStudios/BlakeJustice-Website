@@ -59,14 +59,14 @@ class SendEmail
 
 		if (PEAR::isError($smtp)) 
 		{
-			// echo("<p>" . "vasdf ". $smtp->getMessage() . "</p>");
+			return 1;
 		}
 
-		if (PEAR::isError($mail)) {
-			// echo("<p>" . $mail->getMessage() . "</p>");
-		} else {
-			//echo("<p>Message successfully sent!</p>");
+		if (PEAR::isError($mail)) 
+		{
+			return 2;
 		}
+		return 0;
 	}
 }
 

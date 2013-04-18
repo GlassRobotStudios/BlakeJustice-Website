@@ -19,8 +19,8 @@
 	// 	echo "OK";
 	// }
 
-	ini_set("display_errors",1); 
-	error_reporting(E_ALL);
+	// ini_set("display_errors",1); 
+	// error_reporting(E_ALL);
 
 	// set_include_path(__dir__.'/dependencies');
 
@@ -52,8 +52,21 @@
 
     if ($check) 
     {
-    	echo "Valid";
-    	SendEmail::sendAutomaticEmailTo($name, $email, $message);
+    	// echo "Valid";
+    	$var = SendEmail::sendAutomaticEmailTo($name, $email, $message);
+
+    	if ($var == 0) 
+    	{
+	    	header("Location: support?check=true");
+    	}
+    	else
+    	{
+    		header("Location: support?check=false&error=$var");	
+    	}
+    }
+    else
+    {
+    	header("Location: support?check=false");
     }
 
 

@@ -56,59 +56,81 @@
         <div class="container">
             <div class="container-fluid">
                 <h1 class="gr-header">SUPPORT</h1>
-                <p class="gr-para">
-                    Any feedback, comments or bugs you may come accross, please let us know below.
-                </p>
 
-                <form class="form-horizontal" name="support" onsubmit="return exeCheck()">
+                <?php if ($_GET["check"] == "true") { ?>
+                    <p class="gr-para">
+                        Your message was sent successfully. We'll try get back to you within the next 3 days.
+                    </p>
+                <?php } elseif ($_GET["check"] == "false") { ?>
+                    <p class="gr-para">
+                        We are sorry, but there was a problem sending your message.<br>
+                        <?php 
+                            if ($_GET["error"] == 1) 
+                            {
+                                echo "There was a problem with the SMTP server.<br>";
+                            }
+                            if ($_GET["error"] == 2) 
+                            {
+                                echo "There was a problem with the mail server.<br>";
+                            }
+                         ?>
+                        Please <a href="support">try</a> again.
+                    </p>
+                <?php } else { ?>
+                    <p class="gr-para">
+                        Any feedback, comments or bugs you may come accross, please let us know below.
+                    </p>
 
-                    <div class="control-group">
-                        <label class="control-label gr-para" for="inputName">Your Name *</label>
-                        <div class="controls">
-                            <div class="span3" style="margin-left: 0px; margin-right: 20px;">
-                                <input type="text" id="inputName" placeholder="Name">
-                            </div>
-                            
-                            <div class="span3" style="margin-left: 0px; margin-right: 20px;">
-                                <div class="alert alert-error fade-in" id="nameAlert" style="display:none;">
-                                    Enter your name
+                    <form class="form-horizontal" name="support" onsubmit="return exeCheck()">
+
+                        <div class="control-group">
+                            <label class="control-label gr-para" for="inputName">Your Name *</label>
+                            <div class="controls">
+                                <div class="span3" style="margin-left: 0px; margin-right: 20px;">
+                                    <input type="text" id="inputName" placeholder="Name">
                                 </div>
-                            </div>    
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label gr-para" for="inputEmail">Your Email *</label>
-                        <div class="controls">
-                            <div class="span3" style="margin-left: 0px; margin-right: 20px;">
-                                <input type="text" id="inputEmail" placeholder="Email">
+                                
+                                <div class="span3" style="margin-left: 0px; margin-right: 20px;">
+                                    <div class="alert alert-error fade-in" id="nameAlert" style="display:none;">
+                                        Enter your name
+                                    </div>
+                                </div>    
                             </div>
-                            
-                            <div class="span3" style="margin-left: 0px; margin-right: 20px;">
-                                <div class="alert alert-error fade-in" id="emailAlert" style="display:none;">
-                                    Not a valid e-mail address
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label gr-para" for="inputEmail">Your Email *</label>
+                            <div class="controls">
+                                <div class="span3" style="margin-left: 0px; margin-right: 20px;">
+                                    <input type="text" id="inputEmail" placeholder="Email">
+                                </div>
+                                
+                                <div class="span3" style="margin-left: 0px; margin-right: 20px;">
+                                    <div class="alert alert-error fade-in" id="emailAlert" style="display:none;">
+                                        Not a valid e-mail address
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label gr-para" for="inputMessage">Your Message</label>
-                        <div class="controls">
-                            <!-- <textarea rows="6"></textarea> -->
-                            <textarea class="field span6" id="inputMessage" rows="9" placeholder="Tell us what happened"></textarea>
+                        
+                        <div class="control-group">
+                            <label class="control-label gr-para" for="inputMessage">Your Message</label>
+                            <div class="controls">
+                                <!-- <textarea rows="6"></textarea> -->
+                                <textarea class="field span6" id="inputMessage" rows="9" placeholder="Tell us what happened"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <div class="controls">
-                            <button type="submit" class="btn btn-primary gr-para">Send</button>
-                            <!-- <button href="#recaptchaModal" type="submit" class="btn btn-primary gr-para" data-toggle="modal">Send</button> -->
-                            <!-- <input type="submit" value="Submit"> -->
+                        
+                        <div class="control-group">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary gr-para">Send</button>
+                                <!-- <button href="#recaptchaModal" type="submit" class="btn btn-primary gr-para" data-toggle="modal">Send</button> -->
+                                <!-- <input type="submit" value="Submit"> -->
+                            </div>
                         </div>
-                    </div>
 
-                </form>
+                    </form>
+                <?php } ?>
             </div>
 
             <!-- Footer -->
@@ -145,7 +167,7 @@
     
                     <div class="control-group" align="center">
                         <div class="controls" style="margin-left:0px;">
-                            <button type="submit" class="btn btn-primary gr-para" id="check">Done</button>
+                            <button type="submit" class="btn btn-primary gr-para" id="checkButton" data-loading-text="Sending...">Done</button>
                         </div>
                     </div>
                 </form>
@@ -264,15 +286,23 @@
                 else
                 {
                     $("#captchaStatus").show();
+                    $('#checkButton').button('reset');
                     Recaptcha.reload();
                     return false;
                 }
             }
 
             //Modified as per comments in site to handle event unobtrusively
-            $("#check").click(function(){
+            $("#checkButton").click(function(){
+                var btn = $(this);
+                btn.button('loading');
+                setTimeout(function () {btn.button('reset')}, 12000);
                 return validateCaptcha();
             });
+
+            // button state demo
+            // $('#checkButton').click(function () {
+            // });
         });
     </script>
 </body>
