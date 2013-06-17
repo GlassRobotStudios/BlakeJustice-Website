@@ -3,10 +3,8 @@
     $iPhone  = stripos($_SERVER['HTTP_USER_AGENT'],"iPhone");
     $iPad    = stripos($_SERVER['HTTP_USER_AGENT'],"iPad");
 
-    $isiOSDevice = true;
-
-    if( !($iPod || $iPhone || $iPad) ){
-        $isiOSDevice = false;
+    if( !($iPod || $iPhone || $iPad) )
+    {
         header("Location: http://blakejustice.co/download");
     } 
 ?>
@@ -19,14 +17,37 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <?php
-        if ($isiOSDevice) {
-            echo "<script src=\"scripts/openapp.js\"></script>";
+        <script type="text/javascript">
+
+        function startApp(){
+            var level = getUrlVars()['level'];
+
+            if (typeof level === 'undefined') {
+                document.location = 'download.php';
+            }
+
+            setTimeout(function(){
+                if(confirm('You do not seem to have Blake Justice installed, do you want to go download it now?')){
+                    document.location = 'download.php';
+                }
+            }, 300);
+
+            document.location = 'blakejustice://level='+level;
         }
-        ?>
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+
+        </script>
 
     </head>
-    <body >
-
+    <body onload='startApp()'>
+        <p>Loading...</p>
     </body>
 </html>
