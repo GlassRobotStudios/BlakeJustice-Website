@@ -25,14 +25,15 @@
             if (typeof level === 'undefined') {
                 document.location = 'download.php';
             }
+            else {
+                setTimeout(function(){
+                    if(confirm('You do not seem to have Blake Justice installed, do you want to go download it now?')){
+                        document.location = 'download.php';
+                    }
+                }, 300);
 
-            setTimeout(function(){
-                if(confirm('You do not seem to have Blake Justice installed, do you want to go download it now?')){
-                    document.location = 'download.php';
-                }
-            }, 300);
-
-            document.location = 'blakejustice://level='+level;
+                document.location = 'blakejustice://level='+level;
+            }
         }
 
         function getUrlVars() {
