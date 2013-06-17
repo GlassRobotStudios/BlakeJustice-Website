@@ -1,4 +1,7 @@
 function launchApp(){
+    var level = getUrlVars()["level"];
+    var uri = ("blakejustice://level=" + level);
+
     var appstorefail = "http://www.blakejustice.co/download";
 
     var loadedAt = +new Date;
@@ -8,6 +11,16 @@ function launchApp(){
                 window.location = appstorefail;
             }
         },100);
-    window.open("blakejustice://","_self");
+    window.open(uri,"_self");
 }
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+
 launchApp()
