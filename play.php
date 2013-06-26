@@ -23,16 +23,14 @@
             var level = getUrlVars()['level'];
 
             if (typeof level === 'undefined') {
-                document.location = 'download.php';
+                window.location = 'download.php';
             }
             else {
-                setTimeout(function(){
-                    if(confirm('You do not seem to have Blake Justice installed, do you want to go download it now?')){
-                        document.location = 'download.php';
-                    }
-                }, 300);
+                setTimeout(function() {
+                    window.location = "download.php";
+                }, 25);
 
-                document.location = 'blakejustice://level='+level;
+                window.location = "blakejustice://level="+level;            
             }
         }
 
@@ -44,11 +42,11 @@
             return vars;
         }
 
-
         </script>
 
     </head>
     <body onload='startApp()'>
         <p>Loading...</p>
+        <p>Click <a href="/">here</a> to go back to home page</p>
     </body>
 </html>
